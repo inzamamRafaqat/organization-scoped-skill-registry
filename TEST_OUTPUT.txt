@@ -1,0 +1,34 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Inzamam Rafaqat\Desktop\Gobined Traders\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Inzamam Rafaqat\Desktop\Gobined Traders
+configfile: pyproject.toml
+plugins: anyio-4.15.0, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 23 items
+
+tests/test_audit_logging.py::test_audit_record_contains_organization_actor_event_and_version PASSED [  4%]
+tests/test_audit_logging.py::test_cross_tenant_access_attempt_is_audit_logged PASSED [  8%]
+tests/test_e2e_workflow.py::test_full_required_end_to_end_workflow PASSED [ 13%]
+tests/test_immutable_versioning.py::test_active_version_is_immutable PASSED [ 17%]
+tests/test_skill_lifecycle.py::test_non_owner_activation_denied PASSED   [ 21%]
+tests/test_skill_lifecycle.py::test_draft_skill_cannot_execute_or_load_as_active PASSED [ 26%]
+tests/test_skill_lifecycle.py::test_disabled_skill_excluded_from_runtime_selection PASSED [ 30%]
+tests/test_skill_lifecycle.py::test_duplicate_activation_request_is_safe_and_idempotent PASSED [ 34%]
+tests/test_tenant_isolation.py::test_same_organization_create_read_succeeds PASSED [ 39%]
+tests/test_tenant_isolation.py::test_cross_organization_read_is_denied PASSED [ 43%]
+tests/test_tenant_isolation.py::test_cross_organization_update_is_denied PASSED [ 47%]
+tests/test_tenant_isolation.py::test_organization_skill_listing_strictly_isolated PASSED [ 52%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[delete_database] PASSED [ 56%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[execute_shell] PASSED [ 60%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[format_disk] PASSED [ 65%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[grant_admin] PASSED [ 69%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[eval] PASSED [ 73%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[rm_rf] PASSED [ 78%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[drop_tables] PASSED [ 82%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[access_host_filesystem] PASSED [ 86%]
+tests/test_tool_validation.py::test_invalid_or_destructive_requested_tool_is_rejected[elevate_privileges] PASSED [ 91%]
+tests/test_tool_validation.py::test_unregistered_tool_is_rejected_with_useful_error PASSED [ 95%]
+tests/test_tool_validation.py::test_valid_tools_do_not_grant_ambient_permissions PASSED [100%]
+
+============================= 23 passed in 5.59s ==============================
