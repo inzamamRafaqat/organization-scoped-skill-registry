@@ -1,7 +1,8 @@
 """Main FastAPI application entrypoint for Jarvis AI COO Skill Registry."""
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, status
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
+
 from fastapi.exceptions import RequestValidationError
 
 from app.core.config import settings
@@ -38,7 +39,14 @@ app = FastAPI(
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
+@app.get("/", include_in_schema=False)
+async def root():
+    """Redirect root path to interactive Swagger documentation."""
+    return RedirectResponse(url="/docs")
+
+
 @app.get("/health", tags=["Health"], summary="System health probe")
+
 async def health_check():
     return {
         "status": "healthy",
