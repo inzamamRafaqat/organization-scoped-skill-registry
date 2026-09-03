@@ -18,7 +18,7 @@ pre { padding: 8pt; border: 1px solid #ddd; white-space: pre-wrap; }
 <body>
 <h1>Final Report: Organization-Scoped Skill Registry Vertical Slice</h1>
 <h2>Evaluation Metadata</h2>
-<p>Repository URL: https://github.com/inzamamRafaqat/organization-scoped-skill-registry<br>Start time: 2026-09-03 14:05 PKT<br>Finish time: 2026-09-03 14:35 PKT<br>Approximate hours: 0.5 hours<br>Final commit SHA: 8301f502c3a897cacc0cfd8f0d0693766be2c179</p>
+<p>Repository URL: https://github.com/inzamamRafaqat/organization-scoped-skill-registry<br>Start time: 2026-09-03 13:00 PKT<br>Finish time: 2026-09-03 15:00 PKT<br>Approximate hours: 2.0 hours<br>Final commit SHA: 8301f502c3a897cacc0cfd8f0d0693766be2c179</p>
 <h2>Goal Achieved</h2>
 <p>Built a fully isolated, multi-tenant Organization-Scoped Skill Registry backend in FastAPI for Jarvis AI COO. Strict row-level tenant boundaries prevent Organization B from accessing Organization A's data. Implemented immutable skill versioning where active skills cannot be modified in place, owner-only activation, tool permission sandboxing with destructive primitive rejection, and an append-only audit trail capturing organization, actor, event, and exact version.</p>
 <h2>Architecture Decisions</h2>
