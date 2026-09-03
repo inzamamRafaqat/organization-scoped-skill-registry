@@ -1,0 +1,36 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<!--[if gte mso 9]>
+<xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml>
+<![endif]-->
+<style>
+body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1a1a1a; margin: 1in; }
+h1 { font-size: 22pt; color: #003366; border-bottom: 2px solid #003366; padding-bottom: 4px; margin-top: 18pt; }
+h2 { font-size: 14pt; color: #004080; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 14pt; }
+table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+th, td { border: 1px solid #bbbbbb; padding: 6pt 8pt; text-align: left; }
+th { background-color: #f0f4f8; font-weight: bold; color: #003366; }
+pre, code { font-family: 'Consolas', 'Courier New', monospace; background-color: #f5f5f5; font-size: 9.5pt; }
+pre { padding: 8pt; border: 1px solid #ddd; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h1>Final Report: Organization-Scoped Skill Registry Vertical Slice</h1>
+<h2>Evaluation Metadata</h2>
+<p>Repository URL: https://github.com/inzamamRafaqat/organization-scoped-skill-registry<br>Start time: 2026-09-03 14:05 PKT<br>Finish time: 2026-09-03 14:35 PKT<br>Approximate hours: 0.5 hours<br>Final commit SHA: 7540223 (and updated on submission branch)</p>
+<h2>Goal Achieved</h2>
+<p>Built a fully isolated, multi-tenant Organization-Scoped Skill Registry backend in FastAPI for Jarvis AI COO. Strict row-level tenant boundaries prevent Organization B from accessing Organization A's data. Implemented immutable skill versioning where active skills cannot be modified in place, owner-only activation, tool permission sandboxing with destructive primitive rejection, and an append-only audit trail capturing organization, actor, event, and exact version.</p>
+<h2>Architecture Decisions</h2>
+<p>FastAPI with async SQLAlchemy 2.0. Dual database design: PostgreSQL 16 (production container via docker-compose with asyncpg and Alembic migrations) alongside SQLite (aiosqlite) with PRAGMA foreign_keys=ON for zero-dependency local evaluation. Canonical ownership key organization_id indexed across all entities. Redundant tenant keys on child version/audit tables for direct index scans. Declarative capability sandboxing preventing ambient tool privileges.</p>
+<h2>Tests Passed</h2>
+<p>23 passed out of 23 tests in 5.59 seconds (0 warnings). All 10 mandatory evaluation scenarios passed:<br>- Same-organization create/read succeeds<br>- Cross-organization read is denied (403/404)<br>- Cross-organization update is denied (403/404)<br>- Non-owner activation is denied (403)<br>- Draft skill cannot execute or load as active (400)<br>- Disabled skill is excluded from runtime selection (400)<br>- Active version is immutable (previous version contents preserved)<br>- Duplicate activation request is safe and idempotent (200 OK)<br>- Invalid or destructive requested tool is rejected (422) [9 parametrized destructive tools tested]<br>- Audit record contains organization, actor, event and version<br>- Full end-to-end lifecycle workflow verified</p>
+<h2>Security/Isolation Evidence</h2>
+<p>Cross-tenant access attempts by XYZ Builders on ABC Construction skills return HTTP 403 and write CROSS_TENANT_ACCESS_DENIED audit events. Non-owner activation attempts fail with HTTP 403 and log UNAUTHORIZED_ACTIVATION_ATTEMPT. Active skill version updates create incremented version rows (v2) leaving v1 untouched. Destructive tools (delete_database, execute_shell, format_disk, etc.) are blocked at the schema boundary.</p>
+<h2>Known Limitations</h2>
+<p>Header/simulated Bearer token authentication rather than full enterprise OIDC/SAML IdP; simulated tool runtime rather than isolated Wasm/Firecracker micro-VMs; row-level multi-tenancy rather than schema-per-tenant physical database isolation; sequential version increments rather than advisory database write locks.</p>
+<h2>What I Would Implement Next</h2>
+<p>1. RS256 JWT validation with an external identity provider (Auth0/Keycloak).<br>2. PostgreSQL Row-Level Security (RLS) policies beneath the ORM.<br>3. WebAssembly / Firecracker micro-VM isolated runtime for executing approved AI COO tools.<br>4. Cryptographic WORM / ledger audit log streaming (AWS QLDB / S3 Object Lock).</p>
+<h2>AI Tools Used</h2>
+<p>Antigravity AI Coding Assistant (Gemini 3.8 Flash model): Architecture ideation, test design synthesis, and code generation adhering to evaluation constraints.</p>
+</body></html>

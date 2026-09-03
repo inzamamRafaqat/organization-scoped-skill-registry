@@ -1,0 +1,30 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<!--[if gte mso 9]>
+<xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml>
+<![endif]-->
+<style>
+body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1a1a1a; margin: 1in; }
+h1 { font-size: 22pt; color: #003366; border-bottom: 2px solid #003366; padding-bottom: 4px; margin-top: 18pt; }
+h2 { font-size: 14pt; color: #004080; border-bottom: 1px solid #ccc; padding-bottom: 3px; margin-top: 14pt; }
+table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+th, td { border: 1px solid #bbbbbb; padding: 6pt 8pt; text-align: left; }
+th { background-color: #f0f4f8; font-weight: bold; color: #003366; }
+pre, code { font-family: 'Consolas', 'Courier New', monospace; background-color: #f5f5f5; font-size: 9.5pt; }
+pre { padding: 8pt; border: 1px solid #ddd; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h1>Known Limitations & Production Roadmap</h1>
+<h2>1. Authentication & Identity Provider (IdP)</h2>
+<p>Current Vertical Slice: Multi-tenant test headers and simulated Bearer tokens.<br>Production Roadmap: RS256 JWT validation integrated with OIDC / SAML 2.0 provider (Auth0, Okta, Keycloak).</p>
+<h2>2. Tool Execution Sandbox</h2>
+<p>Current Vertical Slice: Validates tool requests against catalog and rejects destructive tools.<br>Production Roadmap: WebAssembly (Wasm) or Firecracker micro-VM isolated execution runtimes.</p>
+<h2>3. Database Multi-Tenancy Strategy</h2>
+<p>Current Vertical Slice: Row-level tenant discriminator organization_id in shared database.<br>Production Roadmap: PostgreSQL Row-Level Security (RLS) policies and schema-per-tenant isolation for high compliance.</p>
+<h2>4. Concurrent Version Drafting</h2>
+<p>Current Vertical Slice: Sequential max(version) + 1 calculation.<br>Production Roadmap: Database advisory locks or optimistic concurrency controls during version creation.</p>
+<h2>5. Audit Trail Immutability</h2>
+<p>Current Vertical Slice: Relational append-only table.<br>Production Roadmap: Write-Once-Read-Many (WORM) storage (AWS S3 Object Lock, QLDB) with cryptographic hash chains.</p>
+</body></html>

@@ -2,7 +2,7 @@
 name = "organization-scoped-skill-registry"
 version = "0.1.0"
 description = "Organization-Scoped Skill Registry Vertical Slice for Jarvis AI COO"
-readme = "README.md"
+readme = "README.doc"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115.0",
