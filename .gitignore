@@ -1,0 +1,37 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables (Crucial: never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker / OS files
+.DS_Store
+Thumbs.db
